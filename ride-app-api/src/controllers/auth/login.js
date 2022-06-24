@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs')
 const { loginSchema } = require('../../validators/userSchema')
 const User = require('../../models/User')
+const { generateToken } = require('../../lib/jwt')
 
 async function login(req, res) {
   const payload = req.body
@@ -19,8 +20,10 @@ async function login(req, res) {
     return
   }
 
+  const token = generateToken(user)
+  
   res.json({
-    user
+    token
   })
 }
 

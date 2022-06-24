@@ -3,9 +3,9 @@ const mongoose = require('mongoose')
 const schema = new mongoose.Schema({
   firstName: 'string',
   lastName: 'string',
-  email:  {
-    type:'string',
-    unique:true
+  email: {
+    type: 'string',
+    unique: true
   },
   password: 'string'
 });
