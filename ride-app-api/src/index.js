@@ -3,14 +3,17 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors= require ('cors')
 const tokenValidation = require('./middlewares/tokenValidation')
-const { taskRouter, authRouter } = require('./routes')
+const { taskRouter, authRouter , vehicleRouter , studentRouter } = require('./routes')
 
 
 const app = express()
 const PORT = process.env.PORT || 4000
+
 app.use(cors())
 app.use(express.json())
 
+app.use('/api/students',tokenValidation, studentRouter)
+app.use('/api/vehicles',tokenValidation, vehicleRouter)
 app.use('/api/tasks', tokenValidation, taskRouter)
 app.use('/api/auth', authRouter)
 
